@@ -13,10 +13,12 @@ def get_featured_game_images():
     
     if response.status_code == 200:
         data = response.json()
-        game_images = [game['header_image'] for game in data['featured_win']]
+        games = data.get('large_capsules', []) + data.get('featured_win', [])
+        game_images = [game['header_image'] for game in games[:10]]
         return game_images
+    
     else:
-        print("Failed to fetch featured games")
+        print("Failed to fetch featured games", flush=True)
         return None
 
 
@@ -82,7 +84,6 @@ def fetch_game_details(game_ids):
                 })
         else:
             print(f"Failed to fetch details for game {appid}")
-    print(game_details)
     return game_details
 
 
@@ -216,4 +217,4 @@ def logout():
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    app.run(debug=True, host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
