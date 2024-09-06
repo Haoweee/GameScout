@@ -13,8 +13,9 @@ app.secret_key = os.getenv('SECRET_KEY', 'my_super_secret_key')
 STEAM_API_KEY = os.getenv('STEAM_API_KEY')
 STEAM_OPENID_URL = 'https://steamcommunity.com/openid/login'
 
-model_path = os.path.join(os.path.dirname(__file__), '..', 'models', 'svd_model.pkl')
+model_path = os.path.join(os.path.dirname(__file__), 'models', 'svd_model.pkl')
 model = joblib.load(model_path)
+
 
 @app.route('/')
 def home():
@@ -77,7 +78,6 @@ def profile():
 
     return render_template('profile.html', games=games)
 
-# printing some games twice
 @app.route('/recommendations')
 def recommendations():
     if 'steam_id' not in session:
