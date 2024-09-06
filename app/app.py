@@ -3,7 +3,7 @@ from urllib.parse import urlencode
 import joblib
 from dotenv import load_dotenv
 import os
-from utils import *
+# from utils import *
 
 import requests
 
