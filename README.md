@@ -91,6 +91,8 @@ Best Model: **SVD Collaborative Filtering**
 
 ## More
 
-Check out my links below:
+Check out my links below!
 
--
+- [NoteBook](/notebook/recommendation_system.ipynb)
+- [Presentation](/Presentation.pdf)
+- [Deployed Model](https://steam-scout-4a30bef3e710.herokuapp.com/)
