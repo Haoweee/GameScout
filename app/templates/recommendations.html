@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-content">
+    <h2>Recommended Games</h2>
+    {% if recommended_games %}
+        <div class="owned-games-container">
+            {% for entry in recommended_games %}
+            <div class="owned-game">
+                <img src="https://steamcdn-a.akamaihd.net/steam/apps/{{ entry.game['appid'] }}/header.jpg" alt="{{ entry.game['name'] }} image">
+                <div class="game-details">
+                    <div class="recommended-game-name">
+                        <p>{{ entry.game['name'] }}</p>
+                        <span>Predicted Rating: {{ entry.rating|round(2) * 100 }}%</span>
+                    </div>
+                    <div class="description">
+                        <p>
+                            {% for tag in entry.game['tags'] %}
+                                {{ tag['description'] }}{% if not loop.last %}, {% endif %}
+                            {% endfor %}
+                        </p>
+                    </div>
+                </div>
+            </div>            
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No recommendations available at this time.</p>
+    {% endif %}
+</div>
+{% endblock %}

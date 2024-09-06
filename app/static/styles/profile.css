@@ -1,0 +1,117 @@
+.user-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-info-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-info-left img {
+  border-radius: 8px;
+}
+
+.user-info-left p {
+  font-size: 24px;
+  font-weight: 100;
+}
+
+.user-info-right {
+  margin: auto;
+}
+
+.user-info-right button {
+  padding: 12px 20px;
+  background-color: #008000;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-info-right button:hover {
+  background-color: #006400;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.user-info-right button:active {
+  background-color: #004d00;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(2px);
+}
+
+.owned-game {
+  display: flex;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+  margin-bottom: 5px;
+  padding: 0;
+  padding-right: 1rem;
+  border-radius: 8px;
+}
+
+.owned-game img {
+  border-radius: 8px;
+  margin-right: 1rem;
+  width: 125px;
+}
+
+.game-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 50px;
+  flex-grow: 1;
+}
+
+.game-name {
+  align-self: flex-start;
+  font-weight: bold;
+}
+
+.recommended-game-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.recommended-game-name p {
+  font-weight: bold;
+  font-size: 12pt;
+  margin: 0;
+}
+
+.recommended-game-name span {
+  font-weight: normal;
+  font-size: 10pt;
+  text-align: right;
+}
+
+.description {
+  flex-grow: 1;
+  font-size: 12pt;
+}
+
+.description p {
+  margin: 0;
+  font-size: 9pt;
+  color: #808080;
+}
+
+.description span {
+  font-size: 9pt;
+  color: #808080;
+}
+
+.playtime {
+  align-self: flex-end;
+  text-align: right;
+}

@@ -1,0 +1,121 @@
+html {
+  overflow-x: hidden;
+  max-width: 100vw;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Motiva Sans", "Twemoji", "Noto Sans", Helvetica, sans-serif;
+  background: #1b2838;
+  height: 100vh;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  width: 100%;
+  background-color: #171d25;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+}
+
+.header-left {
+  flex: 1;
+}
+
+.header-middle {
+  flex: 1;
+  text-align: center;
+}
+
+.header-middle img {
+  max-height: 35px;
+  vertical-align: middle;
+}
+
+.header-right {
+  flex: 1;
+}
+
+.side-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0;
+  overflow-x: hidden;
+  background-color: #171d25;
+  transition: 0.3s;
+  z-index: 1000;
+}
+
+.side-nav a {
+  padding: 15px 15px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  transition: 0.3s;
+}
+
+.side-nav a:hover {
+  background-color: #575d6b;
+}
+
+.sidenav-open {
+  width: 250px;
+}
+
+.side-nav img {
+  width: 35px;
+  border: 1px solid rgba(62, 103, 150, 0.6);
+}
+
+body.logged-in .profile-side-nav {
+  box-shadow: inset 0 -4px 8px 0 #000000;
+  background: -webkit-linear-gradient(343deg, #24313f 0%, #171a21 33%);
+  background: linear-gradient(107deg, #24313f 0%, #171a21 33%);
+}
+
+.profile-side-nav a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-toggle {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.3s ease;
+}
+
+.main-content {
+  max-width: 950px;
+  margin: 2rem auto;
+  padding-bottom: 2rem;
+  color: #ebebeb;
+}
+
+.footer-note {
+  text-align: center;
+  font-size: 10pt;
+  color: #dcdedf;
+  margin-top: 20px;
+}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-content">
+    {% if 'username' in session %}
+        <h1>Welcome {{ session['username'] }} to the Steam Game Recommender</h1>
+        <p>To start, simply navigate to the side navigation bar and click on "Recommendations". In just a few seconds, we'll provide you with the best game suggestions tailored to your gaming history!</p>
+        <p>Explore new adventures, revisit classic titles, or find hidden gems that match your unique preferences. Your next favorite game is just a click away!</p>
+    {% else %}
+        <h1>Welcome to Steam Game Recommender</h1>
+        <p>The Steam Game Recommender is a web application designed to help users discover new games based on their gaming preferences and play history. Utilizing a dataset of approximately 50,000 games and over 40 million reviews, all sourced from the Steam Official Store, the app provides personalized game recommendations to enhance the gaming experience.</p>
+        <p>At the core of the recommendation engine is the SVD (Singular Value Decomposition) collaborative filtering algorithm, implemented using the Surprise library. This method leverages the patterns in user ratings to predict how much a user might like a particular game they haven't played yet. To ensure accurate and reliable recommendations, the model was meticulously evaluated using multiple performance metrics, including RMSE (Root Mean Squared Error), MAE (Mean Absolute Error), Precision@k, and Recall@k.</p>
+        <p>Due to the vast size of the dataset, running the models on the entire data would result in memory errors. Therefore, a carefully selected subset of the data was used to train and test the models, balancing performance with resource constraints. This ensures that users receive high-quality recommendations without compromising the app's efficiency.</p>
+        <p>The web app provides an intuitive interface where users can log in with their Steam credentials, view their owned games, and receive recommendations for new games to explore. Whether you're a casual gamer or a dedicated enthusiast, the Steam Game Recommender aims to enrich your gaming journey by introducing you to titles that align with your tastes and interests. Get started today and embark on a new gaming adventure!</p>
+        <p>Whether you're a seasoned gamer looking for your next adventure or a casual player seeking new titles to explore, the Steam Game Recommender is here to guide you through the vast world of gaming. Simply log in with your Steam account, and let the app do the rest. Discover, play, and enjoy the games that match your unique gaming profile.</p>
+    {% endif %}
+
+    <h2>Featured Games</h2>
+    <div class="carousel">
+        <div class="carousel-images">
+            {% for game_image in featured %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <img src="{{ game_image }}" alt="Featured Game Image">
+            </div>
+            {% endfor %}
+        </div>
+        <button class="carousel-control-prev" onclick="prevSlide()">&#10094;</button>
+        <button class="carousel-control-next" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    {% if 'username' not in session %}
+        <h2>How to Use the Steam Game Recommender</h2>
+        <ol>
+            <li><strong>Log In:</strong> Use your Steam account to access the app. This allows the app to analyze your game library and preferences.</li>
+                <ul>*<strong>NOTE:</strong> You must already have a <strong>public</strong> Steam account with games downloaded*</ul>
+            <br>
+            <li><strong>Explore Your Library:</strong> Once logged in, view your current games and see what the app recommends based on your playing habits and interests.</li>
+            <br>
+            <li><strong>Get Recommendations:</strong> Click on "Recommendations" in the side navigation bar to receive game suggestions tailored to your profile.</li>
+            <br>
+            <li><strong>Discover New Games:</strong> Dive into new genres, find indie hits, or explore mainstream blockbusters that you might have missed.</li>
+            <br>
+            <li><strong>Enjoy Your Games:</strong> Whether it's solo adventures, multiplayer mayhem, or co-op fun, the app's recommendations are designed to make your gaming experience even better.</li>
+        </ol>
+        <p>Sign in today to unlock personalized game suggestions and start your journey towards discovering your next favorite game!</p>
+    {% endif %}
+    
+    <h2>Popular Games</h2>
+    <div class="owned-games-container">
+        {% for game in games %}
+        <div class="owned-game">
+            <img src="{{ game['image'] }}" alt="{{ game['name'] }}">
+            <div class="game-details">
+                <div class="recommended-game-name">
+                    <p>{{ game['name'] }}</p>
+                </div>
+                <div class="description">
+                    <span>
+                        {% for tag in game['tags'] %}
+                            {{ tag['description'] }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
+                    </span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="footer-note">
+        <p>Disclaimer: This site is not affiliated with Valve Corp. or Steam. Created for educational and entertainment purposes &#128518;</p>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+    
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.carousel-item');
+            if (index >= slides.length) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = slides.length - 1;
+            } else {
+                currentIndex = index;
+            }
+            const offset = -currentIndex * 100;
+            document.querySelector('.carousel-images').style.transform = `translateX(${offset}%)`;
+        }
+    
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+    
+        function prevSlide() {
+            showSlide(currentIndex - 1);
+        }
+    
+        setInterval(nextSlide, 8000);
+    </script>
+    
+</div>
+{% endblock %}

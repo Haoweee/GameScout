@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-content">
+    <div class="user-info">
+        <div class="user-info-left">
+            {% if session['avatar'] %}
+                <img src="{{ session['avatar'] }}" alt="User Avatar">
+            {% endif %}
+            <p>{{ session['username'] }}</p>
+        </div>
+        <div class="user-info-right">
+            <!-- Trigger loading screen when button is clicked -->
+            <button onclick="showLoadingScreen(); window.location.href='/recommendations'">Get Recommendations</button>
+        </div>        
+    </div>
+    
+    <div class="owned-games-container">
+        <h2>Owned Games</h2>
+        {% if games %}
+            {% for game in games %}
+            <div class="owned-game">
+                <img src="https://steamcdn-a.akamaihd.net/steam/apps/{{ game['appid'] }}/header.jpg" alt="{{ game['name'] }} image">
+                <div class="game-details">
+                    <div class="game-name">{{ game['name'] }}</div>
+                    <div class="playtime">{{ game['playtime_forever'] }} hrs on record</div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No games found.</p>
+        {% endif %}
+    </div>        
+</div>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="main-content">
+    <div class="box-container">
+        <div class="box">
+            <div class="graph">
+                <img src="../static/images/analysis/distribution_date_release.png" alt="class-imbalance">
+                <p>Throughout the years more games have been releasing at an expoential rate, then drops in the year 2022-2024.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="box-container">
+        <div class="box">
+            <div class="graph">
+                <img src="../static/images/analysis/distribution_of_positive_ratio.png" alt="states">
+                <p>There are more positive ratios (ratings) of games as the ratings increases.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-container">
+        <div class="box">
+            <div class="graph">
+                <img src="../static/images/analysis/price_of_games_over_time.png" alt="age-f">
+                <p>The average price of games slightly increased as time went on, a few even reaching $300 and the majority are between $0 - $60.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="box-container">
+        <div class="box">
+            <div class="graph">
+                <img src="../static/images/analysis/positive_ratio_over_time.png" alt="amount-category">
+                <p>There is a huge number of games that have been released since 2010. There is a cluster of positive ratios towards the higher side of ratings.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="box-container">
+        <div class="box">
+            <div class="graph">
+                <img src="../static/images/analysis/number_of_games_for_each_platform.png" alt="category">
+                <p>Windows supports the most number of games on Steam, while Mac and Linux machines don't support nearly as many.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-container">
+        <div class="box">
+            <div class="graph">
+                <img src="../static/images/analysis/release_dates_of_games_by_platform.png" alt="mf">
+                <p>The average ratings for Window users shows an increase, whereas Mac and Linux users increased slightly and remained somewhat stagnant.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

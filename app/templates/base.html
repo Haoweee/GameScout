@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% if 'username' in session %}
+            Steam - {{ session['username'] }}
+        {% else %}
+            Steam - Guest
+        {% endif %}
+    </title>
+    <link rel="icon" href="{{ url_for('static', filename='images/website/favicon.ico') }}" type="image/x-icon">
+    <link href="https
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/loading.css') }}">
+</head>
+<body class="{% if 'username' in session %}logged-in{% endif %}">
+    <div class="header">
+        <div class="header-content">
+            <div class="header-left">
+                <button class="nav-toggle" id="nav-toggle" onclick="toggleNav()">&#9776;</button>
+            </div>
+            <div class="header-middle">
+                <img src="https
+            </div>
+            <div class="header-right"></div>
+        </div>
+    </div>
+
+    <div>
+        {% block content %}{% endblock %}
+    </div>    
+
+    <div class="side-nav" id="side-nav">
+        <div class="profile-side-nav">
+            {% if 'username' in session %}
+                {% if session['avatar'] %}
+                    <a href="/profile">
+                        <img src="{{ session['avatar'] }}" alt="User Avatar">
+                        <span>{{ session['username'] }}</span>
+                    </a>
+                {% endif %}
+        </div>
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
+        
+        {% if 'username' in session %}
+            <a href="/recommendations" onclick="showLoadingScreen(); window.location.href='/recommendations';">Recommendations</a>
+        {% else %}
+            <a href="/recommendations">Recommendations</a>
+        {% endif %}
+        
+        <a href="/analysis">Analysis</a>
+    </div>
+    
+
+    <!-- Loading screen -->
+    <div id="loading-screen" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>Loading recommendations, please wait...</p>
+    </div>
+
+    <script>
+    
+        function toggleNav() {
+            var sideNav = document.getElementById("side-nav");
+            if (sideNav.classList.contains("sidenav-open")) {
+                closeNav();
+            } else {
+                openNav();
+            }
+        }
+    
+        function openNav() {
+            document.getElementById("side-nav").classList.add("sidenav-open");
+            document.addEventListener('click', closeNavOnClickOutside);
+        }
+    
+        function closeNav() {
+            document.getElementById("side-nav").classList.remove("sidenav-open");
+            document.removeEventListener('click', closeNavOnClickOutside);
+        }
+
+        function closeNavOnClickOutside(event) {
+            var sideNav = document.getElementById("side-nav");
+            var navToggle = document.getElementById("nav-toggle");
+            
+            if (!sideNav.contains(event.target) && !navToggle.contains(event.target)) {
+                closeNav();
+            }
+        }
+
+        function showLoadingScreen() {
+            document.getElementById('loading-screen').style.display = 'flex';
+        }
+    </script>
+</body>
+</html>

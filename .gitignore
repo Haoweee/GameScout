@@ -2,20 +2,7 @@
 ./notebook/ipynb_checkpoints
 
 # ignore data files
-./data/raw
-
-# ignoring files in the client folder
-./client/node_modules
-
-# dependencies
-./client//.pnp
-./client/.pnp.js
-./client/coverage
-./client/build
-./client/.DS_Store
-./client/npm-debug.log*
-./client/yarn-debug.log*
-./client/yarn-error.log*
+/data
 
 # ignoring the .env file
 .env
